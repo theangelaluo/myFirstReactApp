@@ -28,6 +28,17 @@ class TodoApp extends React.Component {
     })
   }
 
+  toggleTodo(index) {
+    if (this.state.todos[index].completed === false) {
+      this.state.todos[index].completed = true;
+    } else {
+      this.state.todos[index].completed = false;
+    }
+    this.setState({
+      todos: dummyData
+    })
+  }
+
   componentDidMount() {
     this.setState({
       todos: dummyData
@@ -38,7 +49,7 @@ class TodoApp extends React.Component {
     return(
       <div>
         <InputLine submit={(e)=> this.addTodo(e)}/>
-        <TodoList todoXClick={(index)=>this.removeTodo(index)} todos={this.state.todos}/>
+        <TodoList toggle={(index)=>this.toggleTodo(index)} todoXClick={(index)=>this.removeTodo(index)} todos={this.state.todos}/>
       </div>
     );
   }
